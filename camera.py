@@ -22,8 +22,8 @@ class Camera:
         smile_cascade = cv.CascadeClassifier('./A/data/haarcascades/haarcascade_smile.xml')
 
         import os
-        assert os.path.isfile(face_cascade), 'haarcascade_frontalface_default.xml がない'
-        assert os.path.isfile(smile_cascade), 'eye_cascade_path.xml がない'
+        # assert os.path.isfile(face_cascade), 'haarcascade_frontalface_default.xml がない'
+        # assert os.path.isfile(smile_cascade), 'eye_cascade_path.xml がない'
 
         # 顔を検出
         faces = face_cascade.detectMultiScale(grayimg, scaleFactor=1.2, minNeighbors=2, minSize=(250, 250))
