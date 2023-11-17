@@ -1,3 +1,5 @@
+# ブラウザを起動した状態で実行する必要がある？
+
 from bardapi import Bard
 import os
 
