@@ -78,17 +78,18 @@ class music_player:
             return
         self.playing_music = False # フラグを建てて、音楽を止める。
         # ここに音楽を止める処理を書く。
+        print(f'now stopping... byebye : {self.music_title}')
 
 if __name__ == '__main__':
-    # 今回は、適当に、カメラが顔を検出したら、音楽を流す。そして、カメラが笑顔を検出したら、音楽を止める。
+    # 今回は、適当に、カメラが顔を検出したら、音楽を流す。カメラが、顔を検出せずに、5秒経ったら、音楽を止める。
     camera = Camera()
     player = music_player()
     while True:
         if camera.detect_elements().face_detect:
             print('face detect')
             player.start_music()
-        if camera.detect_elements().smile_detect:
-            print('smile detect')
+        if not camera.detect_elements().face_detect:
+            print('not face detect')
             player.stop_music()
         if camera.check_stop():
             print('camera stop')
