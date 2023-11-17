@@ -98,12 +98,13 @@ class music_player:
         self.playing_music = False # フラグを建てて、音楽を止める。
         # ここに音楽を止める処理を書く。
         print(f'now stopping... byebye : {self.music_title}')
-        self.player.stop()
+        # self.player.stop()
         # pauseしたいときは、
-        # self.player.pause()
+        self.player.pause()
 
 if __name__ == '__main__':
     # 今回は、適当に、カメラが顔を検出したら、音楽を流す。カメラが、顔を検出せずに、5秒経ったら、音楽を止めるみたいなのにしたい。
+    # time.sleep(3)
     camera = Camera()
     player = music_player()
     while True:
@@ -118,3 +119,4 @@ if __name__ == '__main__':
             print('camera stop')
             camera.stop_camera()
             break
+        time.sleep(0.1)
