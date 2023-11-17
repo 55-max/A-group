@@ -18,10 +18,10 @@ class Camera:
         grayimg = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
         # 顔・笑顔検出の為、特徴量の読み込み
-        face_cascade = cv.CascadeClassifier('./A/data/haarcascades/haarcascade_frontalface_default.xml')
-        smile_cascade = cv.CascadeClassifier('./A/data/haarcascades/haarcascade_smile.xml')
+        face_cascade = cv.CascadeClassifier('./A-group/data/haarcascades/haarcascade_frontalface_default.xml')
+        smile_cascade = cv.CascadeClassifier('./A-group/data/haarcascades/haarcascade_smile.xml')
 
-        import os
+        # import os
         # assert os.path.isfile(face_cascade), 'haarcascade_frontalface_default.xml がない'
         # assert os.path.isfile(smile_cascade), 'eye_cascade_path.xml がない'
 
