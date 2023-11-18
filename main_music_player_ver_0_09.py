@@ -11,8 +11,8 @@ import music_player_module.main_music_player_ver_0_04 as music_player_module
 camera_module._FACE_CASCADE_PATH = FACE_CASCADE_PATH
 camera_module._SMILE_CASCADE_PATH = SMILE_CASCADE_PATH
 
-camera = camera_module.Camera() # カメラのインスタンスを作成
-player = music_player_module.music_player() # 音楽プレイヤーのインスタンスを作成
+camera = camera_module.Camera()
+player = music_player_module.music_player()
 
 if __name__ == '__main__':
     
