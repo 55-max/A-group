@@ -7,6 +7,7 @@ import ytmusicapi
 import subprocess
 
 CLIENT_INFO_JSON_PATH = './spotify_client_info.json'
+YOUTUBE_HEADERS_FILE = './your_youtube_headers_file'
 
 # client_id = 'XXXXXXXXXXXXXXXX' # App作成時のCliend ID
 # client_secret = 'XXXXXXXXXXXXXXXX' # App作成時のCliend Secret
@@ -20,9 +21,10 @@ client_credentials_manager = spotipy.oauth2.SpotifyClientCredentials(client_id, 
 spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 youtube_headers_file = "your_youtube_headers_file"
-youtube = ytmusicapi.YTMusic(youtube_headers_file)
+youtube = ytmusicapi.YTMusic()
 
 PLAYLIST_URLS_PATH = 'playlist_urls.csv'
+
 class music_player_module:
 
     def __init__(self) -> None:
@@ -47,11 +49,12 @@ class music_player_module:
             playlist = spotify.playlist(playlist_url)
             playlist_tracks = playlist['tracks']
             playlist_tracks_items = playlist_tracks['items']
-            playlist_tracks_items_df = pd.DataFrame(playlist_tracks_items)
-            playlist_tracks_items_df = playlist_tracks_items_df['track']
-            playlist_tracks_items_df = pd.DataFrame(playlist_tracks_items_df)
-            playlist_tracks_items_df = playlist_tracks_items_df['id']
-            return playlist_tracks_items_df
+            songs_dict = {}
+            for i in range(len(playlist_tracks_items)):
+                songs_dict[i] = {'artist': playlist_tracks['items'][i]['track']['artists'][0]['name'], 'title': playlist_tracks['items'][i]['track']['name']}
+            songs_df = pd.DataFrame(songs_dict).T
+            songs_df
+            return songs_df
     
         self.playlist_metadates = get_DataFrame_from_playlist_url(self.playlist_url)
 
@@ -112,11 +115,15 @@ class music_player_module:
         
 
 if __name__ == '__main__':
-    music_selector = music_player_module.music_selector()
+    music_selector = music_player_module()
     music_selector.select_playlist()
 
-    quit()
+    print(music_selector.playlist_url) # 乱数で選ばれたプレイリストのURLを表示
+
     music_selector.get_songs_metadate_from_playlist()
+
+    quit()
+
     music_selector.get_random_3_songs()
     music_selector.make_3playlist()
     music_selector.download_songs()
