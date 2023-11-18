@@ -6,7 +6,7 @@ SMILE_CASCADE_PATH = './data/haarcascades/haarcascade_smile.xml'
 
 import time
 import camera_module.main_camera_ver_0_01 as camera_module
-import music_player_module.main_music_player_ver_0_03 as music_player_module
+import music_player_module.main_music_player_ver_0_04 as music_player_module
 
 camera_module._FACE_CASCADE_PATH = FACE_CASCADE_PATH
 camera_module._SMILE_CASCADE_PATH = SMILE_CASCADE_PATH

@@ -1,3 +1,6 @@
+# start_musicと、pause_musicと、stop_musicを作る。resume_musicと、play_musicを統合。
+# pause, stopのとき、volume downしていく感じにしたいなぁ。
+
 import vlc
 
 class music_player:
@@ -14,16 +17,22 @@ class music_player:
     def start_music(self):
         if self.playing_music: # 既に流れているなら、何もしない
             return
-        print('pause_flag : ', self.pause_flag)
         if self.pause_flag:
-            print('resuming処理へ...')
             self.resume_music()
-            return
-        self.play_music()
+        else:
+            self.play_music()
         
+    def resume_music(self):
+        assert self.pause_flag, 'pause_flag is False'
+        self.playing_music = True
+        self.pause_flag = False
+        print(f'now resuming... : {self.music_title}')
+        self.player.pause()
+
 
     def play_music(self):
-        self.playing_music = True # フラグを建てて、音楽を流す。
+        assert self.pause_flag == False, 'pause_flag is True'
+        self.playing_music = True
         print(f'now playing... : {self.music_title}')
         self.player.set_mrl('test.mp3')
         self.player.play()
@@ -36,25 +45,12 @@ class music_player:
         print(f'now pausing... : {self.music_title}')
         self.player.pause()
         
-
-    def resume_music(self):
-        assert self.pause_flag, 'pause_flag is False'
-        print((self.playing_music) or (not self.pause_flag), self.playing_music, (not self.pause_flag))
-        if (self.playing_music) or (not self.pause_flag):
-            return
-        self.playing_music = True
-        self.pause_flag = False
-        print(f'now resuming... : {self.music_title}')
-        self.player.pause()
-
     def stop_music(self):
         if not self.playing_music: # 既に止まっているなら、何もしない
             return
         self.playing_music = False # フラグを建てて、音楽を止める。
         print(f'now stopping... byebye : {self.music_title}')
         self.player.stop()
-
-
 
 if __name__ == '__main__':
     import time
