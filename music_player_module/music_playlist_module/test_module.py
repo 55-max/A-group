@@ -122,9 +122,18 @@ if __name__ == '__main__':
 
     music_selector.get_songs_metadate_from_playlist()
 
-    quit()
+    print(music_selector.playlist_metadates) # プレイリストのメタデータを表示
 
     music_selector.get_random_3_songs()
+
+    print(music_selector.random_3_songs) # プレイリストからランダムに3曲選んだものを表示
+
     music_selector.make_3playlist()
+
+    print(music_selector.list_of_playlists) # 3つのプレイリストを表示
+
+    quit()
+
+
     music_selector.download_songs()
     # music_selector.play_songs()
