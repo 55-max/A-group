@@ -7,7 +7,6 @@ import ytmusicapi
 import subprocess
 
 CLIENT_INFO_JSON_PATH = './spotify_client_info.json'
-YOUTUBE_HEADERS_FILE = './your_youtube_headers_file'
 
 # client_id = 'XXXXXXXXXXXXXXXX' # App作成時のCliend ID
 # client_secret = 'XXXXXXXXXXXXXXXX' # App作成時のCliend Secret
@@ -51,7 +50,10 @@ class music_player_module:
             playlist_tracks_items = playlist_tracks['items']
             songs_dict = {}
             for i in range(len(playlist_tracks_items)):
-                songs_dict[i] = {'artist': playlist_tracks['items'][i]['track']['artists'][0]['name'], 'title': playlist_tracks['items'][i]['track']['name']}
+                songs_dict[i] = {'artist': playlist_tracks['items'][i]['track']['artists'][0]['name'], 
+                                 'title': playlist_tracks['items'][i]['track']['name'], 
+                                 'artist_id': playlist_tracks['items'][i]['track']['artists'][0]['id'],
+                                 'track_id': playlist_tracks['items'][i]['track']['id']}
             songs_df = pd.DataFrame(songs_dict).T
             songs_df
             return songs_df
@@ -71,7 +73,23 @@ class music_player_module:
         assert self.random_3_songs is not None, 'Random 3 songs is not set'
 
         def make_playlist_from_song(song_data: pd.DataFrame) -> pd.DataFrame:
-            # playlist_df = pd.DataFrame()
+            seed_artist = [song_data['artist_id']]
+            seed_track = [song_data['track_id']]
+            results = spotify.recommendations(seed_artists=seed_artist, seed_tracks=seed_track, limit=75)
+            recommended_songs_dict = {}
+            for i in range(len(results['tracks'])):
+                recommended_songs_dict[i] = {'artist': results['tracks'][i]['artists'][0]['name'], 
+                                             'title': results['tracks'][i]['name'], 
+                                             'artist_id': results['tracks'][i]['artists'][0]['id'],
+                                             'track_id': results['tracks'][i]['id']}
+            recommended_songs_df = pd.DataFrame(recommended_songs_dict).T
+
+
+            print(song_data)
+            print(recommended_songs_df)
+
+
+            playlist_df = pd.concat([pd.DataFrame(song_data).T, recommended_songs_df], ignore_index=True)
             return playlist_df
         
 
@@ -132,8 +150,8 @@ if __name__ == '__main__':
 
     print(music_selector.list_of_playlists) # 3つのプレイリストを表示
 
+    print(music_selector.list_of_playlists['1']) # 1つ目のプレイリストを表示
+
     quit()
-
-
-    music_selector.download_songs()
+    # music_selector.download_songs()
     # music_selector.play_songs()
