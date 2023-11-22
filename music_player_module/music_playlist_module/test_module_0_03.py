@@ -11,6 +11,7 @@ import subprocess
 import pandas as pd
 import shutil
 import os
+import pprint
 
 
 with open(CLIENT_INFO_JSON_PATH) as f:
@@ -67,12 +68,35 @@ class music_player_module:
 
         self.random_3_songs = get_random_3_songs_from_playlist_metadates(self.playlist_metadates)
 
+    def user_select_3_songs(self, user_select_3_songs: list):
+        # user_select_3_songs = [['Vaundy','踊り子'], ['Vaundy', '東京Flash'], ['Skrillex', 'Recess']]
+        # 上のような形式で、ユーザーが選んだ3曲を受け取る。これをdfにする。そして、artist_idとtrack_idを取得する。
+
+        def get_user_select_3_songs_df(user_select_3_songs: list) -> pd.DataFrame:
+            user_select_3_songs_dict = {}
+            for i in range(len(user_select_3_songs)):
+                artist = user_select_3_songs[i][0]
+                title = user_select_3_songs[i][1]
+                print(f'now searching {artist} {title}')
+                result = spotify.search(q=f'artist: {artist} track: {title}', type='track')
+                track_id = result['tracks']['items'][0]['id']
+                artist_id = result['tracks']['items'][0]['artists'][0]['id']
+                user_select_3_songs_dict[i] = {'artist': user_select_3_songs[i][0], 
+                                                'title': user_select_3_songs[i][1],
+                                                'track_id': track_id,
+                                                'artist_id': artist_id}
+            user_select_3_songs_df = pd.DataFrame(user_select_3_songs_dict).T
+            return user_select_3_songs_df
+        
+        self.random_3_songs = get_user_select_3_songs_df(user_select_3_songs)
+
     def make_3playlist(self):
         assert self.random_3_songs is not None, 'Random 3 songs is not set'
 
         def make_playlist_from_song(song_data: pd.DataFrame) -> pd.DataFrame:
             seed_artist = [song_data['artist_id']]
             seed_track = [song_data['track_id']]
+            print(seed_artist, seed_track)
             results = spotify.recommendations(seed_artists=seed_artist, seed_tracks=seed_track, limit=SONGS_NUM)
             recommended_songs_dict = {}
             for i in range(len(results['tracks'])):
@@ -142,16 +166,20 @@ class music_player_module:
 if __name__ == '__main__':
     music_selector = music_player_module()
 
-    music_selector.select_playlist()
+    # music_selector.select_playlist()
 
-    print(music_selector.playlist_url) # 乱数で選ばれたプレイリストのURLを表示
+    # print(music_selector.playlist_url) # 乱数で選ばれたプレイリストのURLを表示
 
-    music_selector.get_songs_metadate_from_playlist()
+    # music_selector.get_songs_metadate_from_playlist()
 
-    print(music_selector.playlist_metadates) # プレイリストのメタデータを表示
+    # print(music_selector.playlist_metadates) # プレイリストのメタデータを表示
 
-    music_selector.get_random_3_songs()
+    # music_selector.get_random_3_songs()
 
+    # print(music_selector.random_3_songs) # プレイリストからランダムに3曲選んだものを表示
+
+    user_select_3_songs = [['Skrillex', 'Recess'], ['Vaundy', '東京Flash'], ['Vaundy','踊り子'] ]
+    music_selector.user_select_3_songs(user_select_3_songs)
     print(music_selector.random_3_songs) # プレイリストからランダムに3曲選んだものを表示
 
     music_selector.make_3playlist()
@@ -160,6 +188,6 @@ if __name__ == '__main__':
 
     print(music_selector.list_of_playlists['1']) # 1つ目のプレイリストを表示
 
-    music_selector.download_songs()
+    # music_selector.download_songs()
 
     # music_selector.play_songs()
