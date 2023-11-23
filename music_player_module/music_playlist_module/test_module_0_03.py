@@ -178,7 +178,7 @@ if __name__ == '__main__':
 
     # print(music_selector.random_3_songs) # プレイリストからランダムに3曲選んだものを表示
 
-    user_select_3_songs = [['Skrillex', 'Recess'], ['Vaundy', '東京Flash'], ['Vaundy','踊り子'] ]
+    user_select_3_songs = [['Lil Yachty', 'Poland'], ['King Gnu', '雨燦々'], ['Vaundy','踊り子'] ]
     music_selector.user_select_3_songs(user_select_3_songs)
     print(music_selector.random_3_songs) # プレイリストからランダムに3曲選んだものを表示
 
@@ -188,6 +188,6 @@ if __name__ == '__main__':
 
     print(music_selector.list_of_playlists['1']) # 1つ目のプレイリストを表示
 
-    # music_selector.download_songs()
+    music_selector.download_songs()
 
     # music_selector.play_songs()
