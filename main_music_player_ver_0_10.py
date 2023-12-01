@@ -5,6 +5,7 @@ FACE_CASCADE_PATH = './data/haarcascades/haarcascade_frontalface_default.xml'
 SMILE_CASCADE_PATH = './data/haarcascades/haarcascade_smile.xml'
 
 import time
+import keyboard
 import camera_module.main_camera_ver_0_01 as camera_module
 import music_player_module.main_music_player_ver_0_06 as music_player_module
 
@@ -16,13 +17,16 @@ player = music_player_module.music_player()
 
 if __name__ == '__main__':
     
-    sleep_time = 1
+    sleep_time = 0.5
+
+    counter = 0
 
     player.set_session(session_path = './music_folder/')
 
     player.start_music()
 
     while True:
+        print(counter)
         camera.detect_elements()
         if camera.face_detect:
             print('face detect')
@@ -39,5 +43,10 @@ if __name__ == '__main__':
         # player.playing_music
         if (player.playing_music) and (not player.player.is_playing()):
             player.next_music()
+        if counter > 10:
+            print("next music")
+            counter = 0
+            player.next_music()
+        counter += 1
             
         time.sleep(sleep_time)

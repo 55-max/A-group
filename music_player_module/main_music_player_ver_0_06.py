@@ -104,15 +104,21 @@ class music_player:
         
         if concentrate_score > 0.8:
             self.now_playing_playlist = 1
+            print('concentrate_score > 0.8 : 1')
         elif concentrate_score > 0.6:
             self.now_playing_playlist = 2
+            print('concentrate_score > 0.6 : 2')
         else:
             self.now_playing_playlist = 3
+            print('concentrate_score < 0.6 : 3')
         if random.random() < 0.1:
             self.now_playing_playlist = random.randint(1,3)
+            print('random')
             
         if self.music_playlist[ self.now_playing_playlist ].counter >= len(self.music_playlist[ self.now_playing_playlist ].playlist):
             self.music_playlist[ self.now_playing_playlist ].counter = 0
+        self.concentrate_score_list = [0,0]
+        
         self.play_music()
 
     def concentrate_score_up(self):
