@@ -1,4 +1,4 @@
-DISTANCE_THRESHOLD = 12
+DISTANCE_THRESHOLD = 10
 
 import RPi.GPIO as GPIO
 import time
@@ -9,17 +9,18 @@ GPIO.setmode(GPIO.BCM)
 #set GPIO Pins
 GPIO_TRIGGER = 24
 GPIO_ECHO = 18
-
+ 
 #set GPIO direction (IN / OUT)
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
+
 
 class Ultra_sonic:
     def __init__(self):
         self.distance = 0
         self.near_flag = False
 
-    def distance(self):
+    def get_distance(self):
         # set Trigger to HIGH
         GPIO.output(GPIO_TRIGGER, True)
     
@@ -57,6 +58,7 @@ if __name__ == '__main__':
     try:
         while True:
             print('x')
+            Ultra_sonic.get_distance()
             dist = Ultra_sonic.distance
             print(Ultra_sonic.near_flag)
             print("x1")
