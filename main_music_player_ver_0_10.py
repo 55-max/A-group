@@ -8,12 +8,14 @@ import time
 import keyboard
 import camera_module.main_camera_ver_0_01 as camera_module
 import music_player_module.main_music_player_ver_0_06 as music_player_module
+import ultra_sonic_module.Ultra_sonic as Ultra_sonic_module
 
 camera_module._FACE_CASCADE_PATH = FACE_CASCADE_PATH
 camera_module._SMILE_CASCADE_PATH = SMILE_CASCADE_PATH
 
 camera = camera_module.Camera()
 player = music_player_module.music_player()
+Ultra_sonic = Ultra_sonic_module.Ultra_sonic()
 
 if __name__ == '__main__':
     
@@ -41,12 +43,18 @@ if __name__ == '__main__':
             camera.stop_camera()
             break
         # player.playing_music
+        
         if (player.playing_music) and (not player.player.is_playing()):
-            player.next_music()
-        if counter > 10:
-            print("next music")
             counter = 0
             player.next_music()
+        if counter > 3:
+            counter = 0
+            if Ultra_sonic.near_flag:
+                print('phone off. pause music...')
+                player.pause_music()
+            else:
+                print('phone on. / playing music...')
+                player.start_music()
         counter += 1
             
         time.sleep(sleep_time)
