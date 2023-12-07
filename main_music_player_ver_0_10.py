@@ -9,7 +9,7 @@ import keyboard
 import camera_module.main_camera_ver_0_01 as camera_module
 import music_player_module.main_music_player_ver_0_06 as music_player_module
 import ultra_sonic_module.Ultra_sonic as Ultra_sonic_module
-import motor_related.motor_module as motor_module
+# import motor_related.motor_module as motor_module
 
 camera_module._FACE_CASCADE_PATH = FACE_CASCADE_PATH
 camera_module._SMILE_CASCADE_PATH = SMILE_CASCADE_PATH
@@ -17,7 +17,7 @@ camera_module._SMILE_CASCADE_PATH = SMILE_CASCADE_PATH
 camera = camera_module.Camera()
 player = music_player_module.music_player()
 Ultra_sonic = Ultra_sonic_module.Ultra_sonic()
-motor = motor_module.motor()
+# motor = motor_module.motor()
 
 
 
@@ -53,7 +53,7 @@ def waiting_function(LIGHT_ON_FLAG):
 
 
 if __name__ == '__main__':
-
+    print('yes')
     LIGHT_ON_FLAG = False
     
     # light on / motor きどう。
