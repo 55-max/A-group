@@ -5,7 +5,7 @@ FACE_CASCADE_PATH = './data/haarcascades/haarcascade_frontalface_default.xml'
 SMILE_CASCADE_PATH = './data/haarcascades/haarcascade_smile.xml'
 
 import time
-import keyboard
+# import keyboard
 import camera_module.main_camera_ver_0_01 as camera_module
 import music_player_module.main_music_player_ver_0_06 as music_player_module
 import ultra_sonic_module.Ultra_sonic as Ultra_sonic_module
