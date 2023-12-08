@@ -1,3 +1,5 @@
+import RPi.GPIO as GPIO
+
 # このファイルがメインになる予定です。
 # カメラデバイス関連のファイルを別のファイルにしよーかなーと思うぜ。
 
@@ -86,3 +88,5 @@ if __name__ == '__main__':
         counter += 1
             
         time.sleep(sleep_time)
+
+GPIO.cleanup()
