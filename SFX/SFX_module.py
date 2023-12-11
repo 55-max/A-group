@@ -1,21 +1,24 @@
 # 効果音を再生するモジュール
 
-import vlc
-p = vlc.MediaPlayer()
+# import vlc
+import subprocess
+# p = vlc.MediaPlayer()
 
 class SFX_module:
     def __init__(self):
-        self.click_sound_dir = 'SFX/click1.wav'
-        self.shut_down_sound_dir = 'SFX/shutdown1.wav'
-        self.player = vlc.MediaPlayer()
+        self.click_sound_dir = './SFX/click1.wav'
+        self.shut_down_sound_dir = './SFX/shutdown1.wav'
+        # self.player = vlc.MediaPlayer()
 
     def click_sound(self):
-        p.set_mrl(self.click_sound_dir)
-        p.play()
+        # p.set_mrl(self.click_sound_dir)
+        subprocess.call(['aplay', self.click_sound_dir])
+        # p.play()
 
     def shut_down_sound(self):
-        p.set_mrl(self.shut_down_sound_dir)
-        p.play()
+        # p.set_mrl(self.shut_down_sound_dir)
+        subprocess.call(['aplay', self.shut_down_sound_dir])
+        # p.play()
 
 if __name__ == '__main__':
     SFX = SFX_module()
