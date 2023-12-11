@@ -28,6 +28,9 @@ class Camera:
         # 画像をグレースケールに変換
         grayimg = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
+        # 画像を時計回りに90度回転
+        grayimg = cv.rotate(grayimg, cv.ROTATE_90_CLOCKWISE)
+
         # 顔・笑顔検出の為、特徴量の読み込み
         face_cascade = cv.CascadeClassifier(_FACE_CASCADE_PATH)
         smile_cascade = cv.CascadeClassifier(_SMILE_CASCADE_PATH)

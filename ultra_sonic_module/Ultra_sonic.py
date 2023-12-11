@@ -7,8 +7,11 @@ import time
 GPIO.setmode(GPIO.BCM)
  
 #set GPIO Pins
-GPIO_TRIGGER = 24
-GPIO_ECHO = 18
+GPIO_TRIGGER = 24 # 27
+GPIO_ECHO = 18 # 23
+
+GPIO_TRIGGER = 27 # 27
+GPIO_ECHO = 23 # 23
  
 #set GPIO direction (IN / OUT)
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
@@ -47,10 +50,15 @@ class Ultra_sonic:
     
         self.distance = distance
 
+        print("Measured Distance = %.1f cm" % distance)
+        print(self.near_flag)
+
         if distance < DISTANCE_THRESHOLD:
             self.near_flag = True
         else:
             self.near_flag = False
+
+        time.sleep(0.3)
 
 
 if __name__ == '__main__':
