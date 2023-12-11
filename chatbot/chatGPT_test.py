@@ -1,5 +1,5 @@
 # import openai
-# openai.api_key = "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"
+# openai.api_key = ""
 # response = openai.ChatCompletion.create(
 #   model="gpt-3.5-turbo", 
 #   messages=[{"role": "user", "content": "ChatGPT APIについて教えて"}])
@@ -8,7 +8,7 @@
 
 
 import openai
-openai.api_key = "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"
+openai.api_key = ""
 
 res = openai.ChatCompletion.create(
    model="gpt-3.5-turbo",
