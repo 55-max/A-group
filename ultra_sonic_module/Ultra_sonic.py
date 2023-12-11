@@ -17,6 +17,8 @@ GPIO_ECHO = 23 # 23
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
+# GPIO.setwarnings(False)                 # BPIO警告無効化
+
 
 class Ultra_sonic:
     def __init__(self):
@@ -24,6 +26,7 @@ class Ultra_sonic:
         self.near_flag = False
 
     def get_distance(self):
+        print('get_distance...')
         # set Trigger to HIGH
         GPIO.output(GPIO_TRIGGER, True)
     
@@ -36,10 +39,12 @@ class Ultra_sonic:
     
         # save StartTime
         while GPIO.input(GPIO_ECHO) == 0:
+            print('in')
             StartTime = time.time()
     
         # save time of arrival
         while GPIO.input(GPIO_ECHO) == 1:
+            print('in2')
             StopTime = time.time()
     
         # time difference between start and arrival
