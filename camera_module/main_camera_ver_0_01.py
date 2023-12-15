@@ -46,7 +46,7 @@ class Camera:
             if len(smiles) >= 3:
                 self.smile_detect = True
         
-        cv.imshow('camera', frame) # 画像をウィンドウに表示（デバッグ用）
+        # cv.imshow('camera', frame) # 画像をウィンドウに表示（デバッグ用）
         return self
 
     def check_stop(self):
