@@ -1,5 +1,28 @@
 #tkinterを導入する→一旦見送る。
 
+# この.pyファイルは、音楽を再生する用のものである。
+# このファイルを実行すると、音楽が再生される。
+# クラスは、music_playerである。
+# このクラスには、以下のメソッドがある。
+# ・start_music() : 音楽を再生する。
+# ・pause_music() : 音楽を一時停止する。
+# ・stop_music() : 音楽を停止する。
+# ・next_music() : 次の曲に移る。
+# ・set_session() : セッションを設定する。
+# ・concentrate_score_up() : 集中度を上げる。
+# ・concentrate_score_down() : 集中度を下げる。
+# また、以下の変数がある。
+# ・playing_music : 音楽が再生されているかどうかを示すフラグ。
+# ・volume : 音量を示す変数。(int: 0~100)
+# ・music_list : 音楽のリスト。
+# ・music_title : 音楽のタイトル。
+# ・proc : 音楽を再生するプロセス。
+# ・player : 音楽を再生するプレイヤー。
+# ・pause_flag : 音楽が一時停止されているかどうかを示すフラグ。
+# ・session_path : セッションのパス。
+# ・music_playlist : セッションのプレイリスト。
+# ・concentrate_score_list : 集中度を示すリスト。[0]が集中度、[1]が集中度の合計。
+
 import vlc
 import time
 import glob
