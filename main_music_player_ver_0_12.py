@@ -113,6 +113,8 @@ if __name__ == '__main__':
         while True:
 
             LIGHT_ON_FLAG = waiting_function(LIGHT_ON_FLAG)
+            # lego_motor.run() # debug: 本番では、ここをコメントアウト
+
 
             print(counter)
             camera.detect_elements()
@@ -129,7 +131,6 @@ if __name__ == '__main__':
             
             if (player.playing_music) and (not player.player.is_playing()):
                 counter = 0
-                lego_motor.run() # debug: 本番では、ここをコメントアウト
                 player.next_music()
 
             counter += 1
