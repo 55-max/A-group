@@ -1,3 +1,20 @@
+# このファイルは、音楽プレイリストを作成するためのモジュールのテストファイルである。
+# このファイルを実行すると、音楽プレイリストを作成するためのモジュールが実行される。
+# クラスは、music_player_moduleとして定義されている。
+# クラスには、以下のメソッドが定義されている。
+# ・select_playlist()
+# ・get_songs_metadate_from_playlist()
+# ・get_random_3_songs()
+# ・user_select_3_songs()
+# ・make_3playlist()
+# ・download_songs()
+# 　また、以下の変数が定義されている。
+# ・playlist_url
+# ・playlist_metadates
+# ・random_3_songs
+# ・list_of_playlists
+
+
 CLIENT_INFO_JSON_PATH = 'spotify_client_info.json'
 PLAYLIST_URLS_PATH = 'playlist_urls.csv'
 SONGS_NUM = 10

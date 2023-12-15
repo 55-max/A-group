@@ -1,3 +1,8 @@
+# このプログラムは、LINE Notifyを用いて、LINEに通知を送るプログラムである。
+# クラスは、notifyである。
+# クラスには、get_check_in_time, get_check_out_time, notifyの3つのメソッドがある。
+# また変数は、check_in_time, check_out_timeの2つである。    
+
 import time
 import datetime
 import subprocess
