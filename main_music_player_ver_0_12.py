@@ -16,6 +16,7 @@ import motor_related.motor_module as motor_module
 import light_module.light as light_module
 import chatbot.LINE_NOTIFY as LINE_NOTIFY
 import SFX.SFX_module as SFX_module
+import motor_related.motor_test as motor_test
 
 camera_module._FACE_CASCADE_PATH = FACE_CASCADE_PATH
 camera_module._SMILE_CASCADE_PATH = SMILE_CASCADE_PATH
@@ -27,6 +28,7 @@ motor = motor_module.motor()
 light = light_module.light()
 LINE_NOTIFY = LINE_NOTIFY.notify()
 SFX = SFX_module.SFX_module()
+lego_motor = motor_test.lego_motor('D')
 
 def waiting_function(LIGHT_ON_FLAG):
     before_flag = LIGHT_ON_FLAG
@@ -127,6 +129,7 @@ if __name__ == '__main__':
             
             if (player.playing_music) and (not player.player.is_playing()):
                 counter = 0
+                lego_motor.run() # debug: 本番では、ここをコメントアウト
                 player.next_music()
 
             counter += 1

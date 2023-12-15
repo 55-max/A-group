@@ -1,3 +1,17 @@
+# このプログラムは、カメラを起動し、顔・笑顔を検出するプログラムである。
+# クラスは、Cameraクラスである。
+# このクラスは、以下のメソッドを持つ。
+# ・__init__(): カメラを起動する。
+# ・detect_elements(): 顔・笑顔を検出する。
+# ・check_stop(): カメラを止めるかどうかを判定する。
+# ・stop_camera(): カメラを止める。
+# また、以下の変数を持つ。
+# ・camera: カメラのインスタンス。
+# ・face_detect: 顔を検出したかどうかを示すフラグ。
+# ・smile_detect: 笑顔を検出したかどうかを示すフラグ。
+# ・FACE_CASCADE_PATH: 顔検出のための特徴量のパス。
+# ・SMILE_CASCADE_PATH: 笑顔検出のための特徴量のパス。
+
 import cv2 as cv
 import time
 
